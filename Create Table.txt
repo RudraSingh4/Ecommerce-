@@ -1,0 +1,67 @@
+create database ecommerce;
+use ecommerce;
+
+
+CREATE TABLE roles (roleid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  title VARCHAR(25));
+
+CREATE TABLE categories(categoryid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(50) NOT NULL,picture VARCHAR (100) NOT NULL );
+
+CREATE TABLE accounts(accountid  INT NOT NULL PRIMARY KEY AUTO_INCREMENT, balance FLOAT);
+CREATE TABLE users(userid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,username varchar(200),password VARCHAR(100) NOT NULL,contactnumber varchar(10),email varchar(255) NOT NULL, question VARCHAR(255),answer VARCHAR(255), role varchar(100));
+
+CREATE TABLE suppliers(supplierid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,organization VARCHAR(100) NOT NULL,location VARCHAR(100) NOT NULL,
+		        email VARCHAR(50) NOT NULL,contactnumber VARCHAR(10) NOT NULL, discounttype VARCHAR(50) NOT NULL,
+				accountid INT NOT NULL,
+                userid INT NOT NULL,
+                CONSTRAINT fk_supplierusers FOREIGN KEY(userid) REFERENCES users(userid),
+			    CONSTRAINT fk_supplieraccounts FOREIGN KEY(accountid) REFERENCES accounts(accountid));
+
+
+CREATE TABLE products(productid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(50) NOT NULL, picture VARCHAR(300) NOT NULL, description VARCHAR(300) NOT NULL,
+ 			unitprice INT NOT NULL,available BOOL NOT NULL,categoryid INT NOT NULL,supplierid INT NOT NULL,
+			CONSTRAINT fk_productscategories FOREIGN KEY(categoryid) REFERENCES categories(categoryid),unitinstock INT NOT NULL, 
+			CONSTRAINT fk_productssupplier FOREIGN KEY(supplierid) REFERENCES suppliers(supplierid));
+
+
+
+
+
+
+
+
+CREATE TABLE shippers(shipperid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,userid INT NOT NULL,
+                       email VARCHAR(200) NOT NULL, contactnumber VARCHAR(10) NOT NULL, organization VARCHAR(50),
+						CONSTRAINT fk_usersshippers FOREIGN KEY(userid) REFERENCES users(userid));
+
+
+
+CREATE TABLE customers(customerid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,firstname VARCHAR(100) NOT NULL,lastname VARCHAR(100),
+			email VARCHAR(100) NOT NULL,contactnumber VARCHAR(10),address VARCHAR(255),
+            roleid INT NOT NULL, accountid INT NOT NULL,userid INT NOT NULL,
+            CONSTRAINT fk_customersusers FOREIGN KEY(userid) REFERENCES users(userid),
+			CONSTRAINT fk_customeraccounts FOREIGN KEY(accountid) REFERENCES accounts(accountid));
+           
+CREATE TABLE orders (orderid INT NOT NULL PRIMARY KEY AUTO_INCREMENT, orderdate DATETIME DEFAULT CURRENT_TIMESTAMP, status VARCHAR(20), customerid INT NOT NULL,
+			CONSTRAINT fk_orderscustomers FOREIGN KEY(customerid) REFERENCES customers(customerid));
+
+
+
+
+CREATE TABLE orderdetails (orderdetailid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			  orderid INT NOT NULL, productid INT NOT NULL, quantity INT,
+			  CONSTRAINT fk_orderdetailsorders FOREIGN KEY (orderid) REFERENCES orders(orderid),
+              CONSTRAINT fk_orderdetailsproducts FOREIGN KEY (productid) REFERENCES products(productid));
+
+CREATE TABLE deliveries(deliveryid INT NOT NULL PRIMARY KEY AUTO_INCREMENT, status VARCHAR(200) NOT NULL, orderid INT NOT NULL,shipperid INT NOT NULL,
+			CONSTRAINT fk_deliveryorders FOREIGN KEY(orderid) REFERENCES orders(orderid),
+			CONSTRAINT fk_deliveryshippers FOREIGN KEY(shipperid) REFERENCES shippers(shipperid));
+
+
+CREATE TABLE ledger(transactionid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,transactiondate DATETIME DEFAULT CURRENT_TIMESTAMP ,accountid INT, amount INT, paymentmode VARCHAR(50),
+operation VARCHAR(1) NOT NULL,
+			CONSTRAINT fk_ledgeraccounts FOREIGN KEY(accountid) REFERENCES accounts(accountid));
+            
+CREATE TABLE payments(paymentid INT NOT NULL PRIMARY KEY AUTO_INCREMENT, paymentdate DATETIME DEFAULT CURRENT_TIMESTAMP,orderid INT, amount float, paymentmode varchar(50),transactionid  INT NOT NULL,
+			CONSTRAINT fk_paymentstransactions FOREIGN KEY(transactionid) REFERENCES ledger(transactionid),
+			CONSTRAINT fk_paymentsorders FOREIGN KEY(orderid) REFERENCES orders(orderid));
+
