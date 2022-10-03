@@ -192,3 +192,125 @@ INSERT INTO products(title,picture,description,unitprice,available,categoryid,su
 values ("Pointed Gourd ","/assets/images/Pointedgourd .jpg", "it is pointed ends on both sides and is thick in middle which is green in colour",12, 0,6,6,0); 
 INSERT INTO products(title,picture,description,unitprice,available,categoryid,supplierid,unitinstock) 
 values ("Tomato ","/assets/images/Tomato .jpg", "tomato should be classified as a vegetable on the basis of its culinary applications",9, 1,6,6,500); 
+
+
+
+
+
+
+INSERT INTO 
+customers(firstname,lastname,email,contactnumber,address,roleid,accountid,userid) VALUES( "Sourav", "Behera", "souravbehera@gmail.com", "9937094574", "Odisha",1,2,1); INSERT INTO 
+customers(firstname,lastname,email,contactnumber,address,roleid,accountid,userid) VALUES ("Nilu", "Patra","nilu@gmail.com", "8637241506", "Gujrat",2,1,2); 
+INSERT INTO 
+customers(firstname,lastname,email,contactnumber,address,roleid,accountid,userid) VALUES( "Ram", "Behera", "rbehera@gmail.com","7751069731", "Delhi",3,4,3 ); 
+INSERT INTO customers 
+(firstname,lastname,email,contactnumber,address,roleid,accountid,userid)VALUES( "Payal", "Patra", "payalpatra@gmail.com", "992415671", "Maharashtra",4,6,4 ); 
+INSERT INTO customers 
+(firstname,lastname,email,contactnumber,address,roleid,accountid,userid)VALUES( "Rahul", "Das", "rdas@gmail.com","8244605084", "Odisha",5,7,5); 
+INSERT INTO customers 
+(firstname,lastname,email,contactnumber,address,roleid,accountid,userid)VALUES( "Raj", "Singh", "rajsingh@gmail.com","8294605084", "Jaipur",6,8,6); 
+INSERT INTO customers 
+(firstname,lastname,email,contactnumber,address,roleid,accountid,userid)VALUES( "Ruhi", "Sharma", "ruhi@gmail.com","8274605084", "Indore",7,3,7); 
+INSERT INTO customers 
+(firstname,lastname,email,contactnumber,address,roleid,accountid,userid)VALUES( "Virat", "Kohli", "kohli@gmail.com","9244605084", "Bombay",8,5,8); 
+INSERT INTO customers 
+(firstname,lastname,email,contactnumber,address,roleid,accountid,userid)VALUES( "Rahul", "Dravid", "rdravid@gmail.com","9844605084", "Kerala",9,10,9); 
+
+
+
+
+
+
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(1,3,"ap@gmail.com","1234567890","ekart");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(2,4,"vk@gmail.com","1234567891","meesho");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(3,5,"sr@gmail.com","1234567892","ajio");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(4,6,"rs@gmail.com","1234567893","flipkart");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(5,7,"aj@gmail.com","1234567894","amazon");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(6,8,"si@gmail.com","1234567895","myntra");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(7,9,"rp@gmail.com","1234567896","ekart");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(8,10,"sd@gmail.com","1234567897","ajio");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(9,11,"ar@gmail.com","1234567898","ekart");
+INSERT INTO shippers(shipperid,userid,email,contactnumber,organization)VALUES(10,12,"sd@gmail.com","1234567899","meesho");
+
+
+ 
+
+
+
+
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2022-05-19 08:18:17","inprocess",1);
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2021-05-19 09:19:17","inprocess",2);
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2020-05-19 10:12:17","inprocess",3);
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2020-05-19 11:19:17","inprocess",4);
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2021-05-19 12:12:17","inprocess",5);
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2022-05-19 13:18:17","inprocess",6);
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2021-05-19 14:19:17","inprocess",7);
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2020-05-19 15:12:17","inprocess",8);
+INSERT INTO orders(orderdate,status,customerid) VALUES ("2020-05-19 16:19:17","inprocess",9);
+
+
+
+
+
+
+
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (1,1,20);
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (2,2,11);
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (3,3,16);
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (4,4,10);
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (5,5,15);
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (6,6,35);
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (7,7,30);
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (8,8,22);
+INSERT INTO orderdetails(orderid,productid,quantity) VALUES (9,9,19);
+
+
+
+
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(1,"delivered",3,1);
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(2,"delivered",4,2);
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(3,"delivered",5,3);
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(4,"delivered",6,4);
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(5,"delivered",7,5);
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(6,"delivered",8,6);
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(7,"delivered",9,7);
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(8,"delivered",10,8);
+INSERT INTO deliveries(deliveryid,status,orderid,shipperid) VALUES(9,"delivered",11,9);
+
+
+
+
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-13 10:25:50", 1,12000, "NET BANKING","C");
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-14 12:25:50", 2,10000, "UPI","C");
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-14 12:25:00", 3,8000, "UPI","C");
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-13 12:25:50", 4,7000, "UPI","C");
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-13 12:10:50", 5,12000, "Debit Card","C");
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-14 18:35:50", 6,10000, "UPI","C");
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-14 23:25:00", 7,8000, "Net Banking","C");
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-13 22:00:00", 8,7000, "Debit Card","C");
+INSERT INTO ledger(transactiondate,accountid, amount , paymentmode,operation) VALUES("2022-05-13 15:54:50", 9,22000, "UPI","C");
+
+
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",1,12000,"NET BANKING",1);
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",2,12000,"UPI",2);
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",3,12000,"UPI",3);
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",4,12000,"UPI",4);
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",5,12000,"Debit Card",5);
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",6,12000,"UPI",6);
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",7,12000,"Net Banking",7);
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",8,12000,"Debit Card",8);
+INSERT INTO payments(paymentdate,orderid,amount,paymentmode,transactionid) VALUES ("2022-05-13 10:25:50",9,12000,"UPI",9);
+
+
+------shipper storeProcedure--------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteShipper`(IN shipperid int)
+BEGIN
+start transaction;
+select @shipperid:=shipperid;
+DELETE deliveries, shippers
+FROM deliveries
+inner JOIN shippers
+ON shippers.shipperid = deliveries.shipperid
+WHERE deliveries.shipperid = @shipperid;
+commit;
+END

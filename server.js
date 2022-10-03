@@ -1,10 +1,14 @@
 const express=require('express');
+const { clearScreenDown } = require('readline');
 const routes=require('./router');
-const app=express();
-app.use(express.urlencoded({extended:true}));
-app.use(express.json());
+//var path=require('path');
 
-routes(app);
-app.listen(7000,()=>{
-    console.log("App server is listening on port 7000");
-})
+var app=express();
+
+
+app.use(express.urlencoded({extended:true}));
+
+app.use(express.json());
+app.listen(3000,()=>{
+console.log("Server is listening on port 3000");
+});

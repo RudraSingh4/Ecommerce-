@@ -1,7 +1,4 @@
 
-
-
-
 var Shippers = require('../model/Shippersdal');
 
 exports.getAll = function(req, res) {
