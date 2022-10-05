@@ -1,8 +1,8 @@
-const sql = require('./db');
+const sql=require('./db');
 
 exports.getAll=function(){
     return new Promise(resolve=>{
-         let command="SELECT * FROM orders";
+         let command="SELECT * FROM accounts";
          sql.query(command,(err, rows, fields)=>{
              resolve(rows);
          })
@@ -12,7 +12,7 @@ exports.getAll=function(){
  
  exports.getById=function(id){
      return new Promise(resolve=>{
-          let command="SELECT * FROM orders  WHERE id="+id;
+          let command="SELECT * FROM accounts  WHERE id="+id;
           sql.query(command,(err, rows, fields)=>{
               resolve(rows);
           })
@@ -26,7 +26,7 @@ exports.getAll=function(){
          let name=req.body.name;
          let location=req.body.location;
          let email=req.body.email;
-         let command="INSERT INTO orders() values(" + name+"','"+ email ;
+         let command="INSERT INTO accounts() values(" + name+"','"+ email ;
          sql.query(command,(err, rows, fields)=>{
              resolve(rows);
          })
@@ -35,7 +35,7 @@ exports.getAll=function(){
  
  exports.remove=function(id){
      return new Promise(resolve=>{
-         let command="DELETE FROM orders Where id="+id ;
+         let command="DELETE FROM accounts Where id="+id ;
          sql.query(command,(err, rows, fields)=>{
              resolve(rows);
          })

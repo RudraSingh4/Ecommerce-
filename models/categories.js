@@ -1,81 +1,43 @@
+const sql = require('./db');
 
-
-var sql = require('./db');
-
-var Category=function(categories){
-    this.title=categories.title;
-   
-
-};
-
-//C Operation code
-
-Category.createTask = function (new_task, result) {    
-    sql.query("INSERT INTO categories set ?", new_task, function (err, res) {
-            if(err) {
-              console.log("error: ", err);
-              result(err, null);
-            }
-            else{
-              console.log(res.insertId);
-              result(null, res.insertId);
-            }
-        });           
+exports.getAll=function(){
+  return new Promise(resolve=>{
+       let command="SELECT * FROM accounts";
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+   }) 
 };
 
 
-Category.getAllTask = function (result) {
-    sql.query("Select * from categories", function (err, res) {
-            if(err) {
-              console.log("error: ", err);
-              result(null, err);
-            }
-            else{
-              console.log('categories : ', res);  
-              result(null, res);
-            }
-        });   
-};
-
-Category.getTaskById = function (taskId, result) {
-  sql.query("Select * from categories where categoryid = ? ", 
-             taskId, function (err, res) {             
-                                              if(err) {
-                                                  console.log("error: ", err);
-                                                  result(err, null);
-                                              }
-                                              else{
-                                                  result(null, res);     
-                                              }
-      });   
-};
-
-Category.updateById = function(taskId, categories, result){
-    sql.query("UPDATE categories SET title = ? WHERE categoryid = ?", [categories.title, taskId], function (err, res) {
-            if(err) {
-                  console.log("error: ", err);
-                  result(null, err);
-               }
-             else{   
-               result(null, res);
-              }
-      }); 
-  };
-
-
-
-  Category.remove = function(taskId, result){
-    sql.query("DELETE FROM categories WHERE categoryid = ?", [taskId], function (err, res) {
-                if(err) {
-                    console.log("error: ", err);
-                    result(null, err);
-                }
-                else{
-                    result(null, res);
-                    
-                }
-            }); 
+exports.getById=function(id){
+   return new Promise(resolve=>{
+        let command="SELECT * FROM categories  WHERE id="+id;
+        sql.query(command,(err, rows, fields)=>{
+            resolve(rows);
+        })
+    }) 
 };
 
 
-module.exports= Category;
+
+exports.insert=function(req){
+   return new Promise(resolve=>{
+       let name=req.body.name;
+       let location=req.body.location;
+       let email=req.body.email;
+       let command="INSERT INTO categories() values(" + name+"','"+ email ;
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+})
+}
+
+exports.remove=function(id){
+   return new Promise(resolve=>{
+       let command="DELETE FROM categories Where id="+id ;
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+})
+}

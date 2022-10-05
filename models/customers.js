@@ -1,36 +1,43 @@
-var sql = require('./db');
+const sql = require('./db');
 
-var Customers=function(){
-  
+exports.getAll=function(){
+  return new Promise(resolve=>{
+       let command="SELECT * FROM customers";
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+   }) 
 };
 
 
-Customers.getCusomersById = function (customerId, result) {
-  sql.query(`Select * from customers where customerid =${customerId}` , 
-            function (err, res) {             
-                                              if(err) {
-                                                  console.log("error: ", err);
-                                                  result(err, null);
-                                              }
-                                              else{
-                                                  result(null, res);     
-                                              }
-      });   
+exports.getById=function(id){
+   return new Promise(resolve=>{
+        let command="SELECT * FROM customers  WHERE id="+id;
+        sql.query(command,(err, rows, fields)=>{
+            resolve(rows);
+        })
+    }) 
 };
 
 
-Customers.getAllCustomer = function (result) {
-  sql.query("Select * from customers", function (err, res) {
-          if(err) {
-            console.log("error: ", err);
-            result(null, err);
-          }
-          else{
-            console.log('customers : ', res);  
-            result(null, res);
-          }
-      });   
-};
 
+exports.insert=function(req){
+   return new Promise(resolve=>{
+       let name=req.body.name;
+       let location=req.body.location;
+       let email=req.body.email;
+       let command="INSERT INTO customers() values(" + name+"','"+ email ;
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+})
+}
 
-module.exports= Customers;
+exports.remove=function(id){
+   return new Promise(resolve=>{
+       let command="DELETE FROM customers Where id="+id ;
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+})
+}

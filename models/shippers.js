@@ -1,73 +1,43 @@
+const sql=require('./db');
 
-
-// DAYAL CODE 
-
-var sql = require('./db');
-
-var Shippers=function(shippers){
-    
-    this.userid=shippers.userid;
-    this.email=shippers.email;
-    this.contactnumber=shippers.contactnumber;
-    this.organization=shippers.organization;
-    
-};
-
-//CUDE Operation code
-
-Shippers.createShippers = function (newShippers, result) {    
-    sql.query("call AddShipper('3','ssa@gmail.com','2733232','wjegwge')", function (err, res) {
-            if(err) {
-              console.log("error: ", err);
-              result(err, null);
-            }
-            else{
-              console.log(res.insertId);
-              result(null, res.insertId);
-            }
-        });           
-};
-
- // ID SA DATA SHOW 
-Shippers.getShippersById = function (shipperid, result) {
-    sql.query("Select task from shippers where id = ? ", 
-    shipperid, function (err, res) {             
-                                                if(err) {
-                                                    console.log("error: ", err);
-                                                    result(err, null);
-                                                }
-                                                else{
-                                                    result(null, res);     
-                                                }
-        });   
-};
-
-//// ALL  DATA SHOW 
-Shippers.getAllShippers = function (result) {
-    sql.query("Select * from shippers", function (err, res) {
-            if(err) {
-              console.log("error: ", err);
-              result(null, err);
-            }
-            else{
-              console.log('shippers : ', res);  
-              result(null, res);
-            }
-        });   
-};
-
-// REMOVE DATA FOR ID  
-Shippers.remove = function(id, result){
-    sql.query("call DeleteShipper(?)", id,function (err, res) {
-                if(err) {
-                    console.log("error: ", err);
-                    result(null, err);
-                }
-                else{
-                    result(null, res);
-                }
-            }); 
-};
-
-
-module.exports= Shippers;
+exports.getAll=function(){
+    return new Promise(resolve=>{
+         let command="SELECT * FROM shippers";
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+     }) 
+ };
+ 
+ 
+ exports.getById=function(id){
+     return new Promise(resolve=>{
+          let command="SELECT * FROM shippers  WHERE id="+id;
+          sql.query(command,(err, rows, fields)=>{
+              resolve(rows);
+          })
+      }) 
+  };
+ 
+  
+ 
+ exports.insert=function(req){
+     return new Promise(resolve=>{
+         let name=req.body.name;
+         let location=req.body.location;
+         let email=req.body.email;
+         let command="INSERT INTO shippers() values(" + name+"','"+ email ;
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+ })
+ }
+ 
+ exports.remove=function(id){
+     return new Promise(resolve=>{
+         let command="DELETE FROM shippers Where id="+id ;
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+ })
+ }

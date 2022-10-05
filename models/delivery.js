@@ -1,63 +1,43 @@
+const sql = require('./db');
 
-
-var sql = require('./db');
-
-var Delivery=function( ){
- 
-};
-
-//C Operation code
- Delivery.createDelivery = function (customerId, result) {    
-    sql.query(`CALL CreateOrder=${customerId}`, function (err, res) {
-            if(err) {
-              console.log("error: ", err);
-              result(err, null);
-            }
-            else{
-              console.log(res.insertId);
-              result(null, res.insertId);
-            }
-        });           
+exports.getAll=function(){
+  return new Promise(resolve=>{
+       let command="SELECT * FROM orderdetails";
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+   }) 
 };
 
 
-Delivery.getDeliveriesById = function (deliveryId, result) {
-  sql.query(`Select * from deliveries where deliveryid =${deliveryId}` ,
-            function (err, res) {             
-                                              if(err) {
-                                                  console.log("error: ", err);
-                                                  result(err, null);
-                                              }
-                                              else{
-                                                  result(null, res);     
-                                              }
-      });   
-};
-
- Delivery.getAllDeliveries = function (result) {
-  sql.query("Select * from deliveries", function (err, res) {
-          if(err) {
-            console.log("error: ", err);
-            result(null, err);
-          }
-          else{
-            console.log('deliveries : ', res);  
-            result(null, res);
-          }
-      });   
-};
-
- Delivery.remove = function(orderId, result){
-  sql.query(`CALL CancelOrder= =${orderId}`, function (err, res) {
-                if(err) {
-                    console.log("error: ", err);
-                    result(null, err);
-                }
-                else{
-                    result(null, res);
-                }
-            }); 
+exports.getById=function(id){
+   return new Promise(resolve=>{
+        let command="SELECT * FROM deliveries  WHERE id="+id;
+        sql.query(command,(err, rows, fields)=>{
+            resolve(rows);
+        })
+    }) 
 };
 
 
-module.exports= Delivery;
+
+exports.insert=function(req){
+   return new Promise(resolve=>{
+       let name=req.body.name;
+       let location=req.body.location;
+       let email=req.body.email;
+       let command="INSERT INTO deliveries() values(" + name+"','"+ email ;
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+})
+}
+
+exports.remove=function(id){
+   return new Promise(resolve=>{
+       let command="DELETE FROM deliveries Where id="+id ;
+       sql.query(command,(err, rows, fields)=>{
+           resolve(rows);
+       })
+})
+}

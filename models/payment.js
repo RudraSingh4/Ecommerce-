@@ -1,46 +1,43 @@
+const sql=require('./db');
 
-
-var sql = require('./db');
-
-var Payments=function(){
+exports.getAll=function(){
+    return new Promise(resolve=>{
+         let command="SELECT * FROM paymentts";
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+     }) 
+ };
+ 
+ 
+ exports.getById=function(id){
+     return new Promise(resolve=>{
+          let command="SELECT * FROM payments  WHERE id="+id;
+          sql.query(command,(err, rows, fields)=>{
+              resolve(rows);
+          })
+      }) 
+  };
+ 
   
-};
-
-//C Operation code
-
-
-
-
-Payments.getPaymentById = function (paymentid, result) {
-  sql.query(`Select * from payments where paymentid =${paymentid}` ,
-               paymentid, function (err, res) {             
-                                                if(err) {
-                                                    console.log("error: ", err);
-                                                    result(err, null);
-                                                }
-                                                else{
-                                                    result(null, res);     
-                                                }
-        });   
-};
-
-
-Payments.getAllPayment = function (result) {
-    sql.query("Select * from payments", function (err, res) {
-            if(err) {
-              console.log("error: ", err);
-              result(null, err);
-            }
-            else{
-              console.log('payments : ', res);  
-              result(null, res);
-            }
-        });   
-};
-
-
-
-
-
-
-module.exports= Payments;
+ 
+ exports.insert=function(req){
+     return new Promise(resolve=>{
+         let name=req.body.name;
+         let location=req.body.location;
+         let email=req.body.email;
+         let command="INSERT INTO payments() values(" + name+"','"+ email ;
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+ })
+ }
+ 
+ exports.remove=function(id){
+     return new Promise(resolve=>{
+         let command="DELETE FROM payments Where id="+id ;
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+ })
+ }

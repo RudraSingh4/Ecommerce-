@@ -1,63 +1,43 @@
+const sql=require('./db')
 
-
-var sql = require('./db');
-
-var Orderdetail=function( ){
+exports.getAll=function(){
+    return new Promise(resolve=>{
+         let command="SELECT * FROM orderdetails";
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+     }) 
+ };
  
-};
-
-//C Operation code
- Orderdetail.createOrder = function (customerId, result) {    
-    sql.query(`CALL CreateOrder=${customerId}`, function (err, res) {
-            if(err) {
-              console.log("error: ", err);
-              result(err, null);
-            }
-            else{
-              console.log(res.insertId);
-              result(null, res.insertId);
-            }
-        });           
-};
-
-
-Orderdetail.getOrderdetailsById = function (orderdetailId, result) {
-  sql.query(`Select * from orderdetails where orderdetailid =${orderdetailId}` ,
-            function (err, res) {             
-                                              if(err) {
-                                                  console.log("error: ", err);
-                                                  result(err, null);
-                                              }
-                                              else{
-                                                  result(null, res);     
-                                              }
-      });   
-};
-
- Orderdetail.getAllOrderdetails = function (result) {
-  sql.query("Select * from orderdetails", function (err, res) {
-          if(err) {
-            console.log("error: ", err);
-            result(null, err);
-          }
-          else{
-            console.log('orderdetails : ', res);  
-            result(null, res);
-          }
-      });   
-};
-
- Orderdetail.remove = function(orderId, result){
-  sql.query(`CALL CancelOrder= =${orderId}`, function (err, res) {
-                if(err) {
-                    console.log("error: ", err);
-                    result(null, err);
-                }
-                else{
-                    result(null, res);
-                }
-            }); 
-};
-
-
-module.exports= Orderdetail;
+ 
+ exports.getById=function(id){
+     return new Promise(resolve=>{
+          let command="SELECT * FROM orderdetails  WHERE id="+id;
+          sql.query(command,(err, rows, fields)=>{
+              resolve(rows);
+          })
+      }) 
+  };
+ 
+  
+ 
+ exports.insert=function(req){
+     return new Promise(resolve=>{
+         let name=req.body.name;
+         let location=req.body.location;
+         let email=req.body.email;
+         let command="INSERT INTO orderdetails() values(" + name+"','"+ email ;
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+ })
+ }
+ 
+ exports.remove=function(id){
+     return new Promise(resolve=>{
+         let command="DELETE FROM orderdetails Where id="+id ;
+         sql.query(command,(err, rows, fields)=>{
+             resolve(rows);
+         })
+ })
+ }

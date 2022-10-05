@@ -1,51 +1,28 @@
+const { response } = require('express');
 
-var Delivery = require('../model/deliverydal');
+const dal=require('../models/deliveries')
 
-exports.getAll = function(req, res) {
-  Delivery.getAllDeliveries(function(err, deliveries) {
-    if (err)
-      res.send(err);
-    res.send(deliveries);
-  });
+exports.getAll= async function(req, res){  
+  let result=[];
+  result=await dal.getAll();
+  res.send(result); 
 };
 
-exports.insert = function(req, res) {
-  
-  var new_order= new Delivery(req.body);
-  let customerid=new_order.customerid;
-  //handles null error 
-  //  if(!new_order.order || !new_order.status){
-  //     res.status(400).send({ error:true, message: 'Please provide order/status' });
-  //   }
-  //  else{
+exports.getById= async function(req, res){  
+  let result=[];
+  result=await dal.getById(req.params.id);
+  res.send(result); 
+};
 
-    Delivery.createOrder(customerid, function(err, order) {
-      if (err)
-      res.send(err);
-    res.json(order);
-    });
+exports.insert=async(req, res)=>{
+  let result=[];
+  result=await dal.insert(req);
+  res.send(result);
   };
 
-exports.getBy = function(req, res) {
-  Delivery.getDeliveriesById(req.params.deliveryid, function(err, deliveries) {
-    if (err)
-      res.send(err);
-    res.json(deliveries);
-  });
+exports.remove=async (req, res)=>{
+      let result=[];
+      result=await dal.remove(req.params.id)
+      res.send(result);
 };
-
-exports.update = function(req, res) {
-  Delivery.updateById(req.params.taskId, new Delivery(req.body), function(err, order) {
-    if (err)
-      res.send(err);
-    res.json(order);
-  });
-};
-
-exports.remove = function(req, res) {
-  Delivery.remove( req.params.orderid, function(err, order) {
-    if (err)
-      res.send(err);
-    res.json({ message: 'Delivery successfully deleted' });
-  });
-};
+  
