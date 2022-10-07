@@ -9,10 +9,10 @@ const conUri={
 const con=mysql.createConnection(conUri);
 con.connect((err)=>{
     if(err){
-        console.log("connect with mysql DB");
+        console.log(err);
     }
     else{
-        console.log(err);
+        console.log("Connection Succesfull");
     }
 });
 module.exports=con;

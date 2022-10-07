@@ -1,11 +1,11 @@
 var accountController=require('./controllers/accountcontroller');
-var categoryController=require('./controllers/categorycontroller');
-var customerController=require('./controllers/customercontroller');
+var categoryController=require('./controllers/categoriescontroller');
+var customerController=require('./controllers/customerscontroller');
 var deliveryController=require('./controllers/deliverycontroller');
 
 
 module.exports=function(app){
-    app.route('/api/accountss')
+    app.route('/api/accounts')
        .get(accountController.getAll)  
        .post(accountController.insert);
             
