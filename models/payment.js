@@ -2,7 +2,7 @@ const sql=require('./db');
 
 exports.getAll=function(){
     return new Promise(resolve=>{
-         let command="SELECT * FROM paymentts";
+         let command="SELECT * FROM payments";
          sql.query(command,(err, rows, fields)=>{
              resolve(rows);
          })

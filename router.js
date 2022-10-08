@@ -10,8 +10,7 @@ module.exports=function(app){
        .post(accountController.insert);
             
     app.route('/api/accounts/:id')
-       .delete(accountController.remove)  
-       .put(accountController.accountupdate)   
+       .delete(accountController.remove)    
        .get(accountController.getById) ; 
 
    
@@ -21,8 +20,7 @@ module.exports=function(app){
      .post(categoryController.insert); 
             
   app.route('/api/categories/:id')
-     .delete(categoryController.remove)  
-     .put(categoryController.categoriesupdate)   
+     .delete(categoryController.remove)     
     .get(categoryController.getById);
        
        
@@ -31,8 +29,7 @@ module.exports=function(app){
        .post(customerController.insert);
 
    app.route('/api/categories/:id')
-     .delete(categoryController.remove)  
-     .put(categoryController.categoriesupdate)   
+     .delete(categoryController.remove)     
      .get(categoryController.getById) ;   
 };
 

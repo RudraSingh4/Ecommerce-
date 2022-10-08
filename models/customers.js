@@ -4,6 +4,7 @@ exports.getAll=function(){
   return new Promise(resolve=>{
        let command="SELECT * FROM customers";
        sql.query(command,(err, rows, fields)=>{
+        console.log(rows)
            resolve(rows);
        })
    }) 

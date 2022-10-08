@@ -4,7 +4,9 @@ const dal=require('../models/customers')
 
 exports.getAll= async function(req, res){  
   let result=[];
+  console.log("Result")
   result=await dal.getAll();
+  console.log(result)
   res.send(result); 
 };
 
