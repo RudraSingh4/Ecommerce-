@@ -1,8 +1,11 @@
+export default class PaymentController {
+  constructor(mgr){
+      this.repoManager=mgr;
+      }
 
+//var Payments = require('../model/paymentsdal');
 
-var Payments = require('../model/paymentsdal');
-
-exports.getAll = function(req, res) {
+getAll = function(req, res) {
   Payments.getAllPayment(function(err, payments) {
     if (err)
       res.send(err);
@@ -10,7 +13,7 @@ exports.getAll = function(req, res) {
   });
 };
 
-exports.insert = function(req, res) {
+insert = function(req, res) {
   
   var new_payments= new payments(req.body);
 
@@ -27,7 +30,7 @@ exports.insert = function(req, res) {
   }
 };
 
-exports.getBy = function(req, res) {
+getBy = function(req, res) {
   Payments.getPaymentById(req.params.paymentid, function(err, payments) {
     if (err)
       res.send(err);
@@ -35,7 +38,7 @@ exports.getBy = function(req, res) {
   });
 };
 
-exports.update = function(req, res) {
+update = function(req, res) {
   Payments.updateById(req.params.paymentId, new Payments(req.body), function(err, payments) {
     if (err)
       res.send(err);
@@ -43,10 +46,11 @@ exports.update = function(req, res) {
   });
 };
 
-exports.remove = function(req, res) {
+remove = function(req, res) {
   Payments.remove( req.params.paymentId, function(err, payments) {
     if (err)
       res.send(err);
     res.json({ message: 'payments successfully deleted' });
   });
 };
+}

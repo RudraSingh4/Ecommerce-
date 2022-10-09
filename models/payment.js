@@ -1,6 +1,10 @@
-const sql=require('./db');
+import sql from './db.js'
+export default class Payment {
+    construcor(){  }
 
-exports.getAll=function(){
+///const sql=require('./db');
+
+getAll=function(){
     return new Promise(resolve=>{
          let command="SELECT * FROM payments";
          sql.query(command,(err, rows, fields)=>{
@@ -10,7 +14,7 @@ exports.getAll=function(){
  };
  
  
- exports.getById=function(id){
+ getById=function(id){
      return new Promise(resolve=>{
           let command="SELECT * FROM payments  WHERE id="+id;
           sql.query(command,(err, rows, fields)=>{
@@ -21,7 +25,7 @@ exports.getAll=function(){
  
   
  
- exports.insert=function(req){
+insert=function(req){
      return new Promise(resolve=>{
          let name=req.body.name;
          let location=req.body.location;
@@ -33,7 +37,7 @@ exports.getAll=function(){
  })
  }
  
- exports.remove=function(id){
+remove=function(id){
      return new Promise(resolve=>{
          let command="DELETE FROM payments Where id="+id ;
          sql.query(command,(err, rows, fields)=>{
@@ -41,3 +45,4 @@ exports.getAll=function(){
          })
  })
  }
+}

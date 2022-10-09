@@ -1,7 +1,11 @@
+export default class PaymentController {
+  constructor(mgr){
+      this.repoManager=mgr;
+      }
 
-var Orders = require('../model/ordersdal');
+//var Orders = require('../model/ordersdal');
 
-exports.getAll = function(req, res) {
+getAll = function(req, res) {
   Orders.getAllOrder(function(err, orders) {
     if (err)
       res.send(err);
@@ -9,7 +13,7 @@ exports.getAll = function(req, res) {
   });
 };
 
-exports.insert = function(req, res) {
+insert = function(req, res) {
   
   var new_order= new Orders(req.body);
   let customerid=new_order.customerid;
@@ -19,14 +23,14 @@ exports.insert = function(req, res) {
   //   }
   //  else{
 
-   exports.createOrder(customerid, function(err, order) {
+   createOrder(customerid, function(err, order) {
       if (err)
       res.send(err);
     res.json(order);
     });
   };
 
-exports.getBy = function(req, res) {
+getBy = function(req, res) {
   Orders.getOrderById(req.params.orderid, function(err, order) {
     if (err)
       res.send(err);
@@ -34,7 +38,7 @@ exports.getBy = function(req, res) {
   });
 };
 
-exports.update = function(req, res) {
+update = function(req, res) {
   Orders.updateById(req.params.taskId, new Orders(req.body), function(err, order) {
     if (err)
       res.send(err);
@@ -42,10 +46,11 @@ exports.update = function(req, res) {
   });
 };
 
-exports.remove = function(req, res) {
+remove = function(req, res) {
   Orders.remove( req.params.orderid, function(err, order) {
     if (err)
       res.send(err);
     res.json({ message: 'Orders successfully deleted' });
   });
 };
+}

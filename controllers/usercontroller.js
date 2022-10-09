@@ -1,7 +1,11 @@
-var Task = require('../model/user');
+export default class PaymentController {
+  constructor(mgr){
+      this.repoManager=mgr;
+      }
+//var Task = require('../model/user');
 
 
-exports.getAll = function(req, res) {
+getAll = function(req, res) {
   Task.getAllTask(function(err, task) {
     if (err)
       res.send(err);
@@ -9,7 +13,7 @@ exports.getAll = function(req, res) {
   });
 };
 
-exports.insert = function(req, res) {
+insert = function(req, res) {
   
   var new_task = new Task(req.body);
 
@@ -25,3 +29,4 @@ exports.insert = function(req, res) {
     });
   }
 };
+}

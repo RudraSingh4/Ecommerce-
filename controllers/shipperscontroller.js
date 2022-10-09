@@ -1,7 +1,10 @@
+export default class PaymentController {
+  constructor(mgr){
+      this.repoManager=mgr;
+      }
+//var Shippers = require('../model/Shippersdal');
 
-var Shippers = require('../model/Shippersdal');
-
-exports.getAll = function(req, res) {
+getAll = function(req, res) {
   Shippers.getAllShippers(function(err, shippers) {
     if (err)
       res.send(err);
@@ -10,7 +13,7 @@ exports.getAll = function(req, res) {
 };
 
 
-exports.insert = function(req, res) {
+insert = function(req, res) {
   
   var new_shippers = new Shippers(req.body);
   
@@ -30,14 +33,14 @@ console.log(new_shippers)
   }
 };
 
-exports.getBy = function(req, res) {
+getBy = function(req, res) {
   Shippers.getShippersById(req.params.shipperid, function(err, shippers) {
     if (err)
       res.send(err);
     res.json(shippers);
   });
 };
-
+}
 
 exports.remove = function(req, res) {
   Shippers.remove( req.params.shipperid, function(err, shippers) {

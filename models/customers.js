@@ -1,6 +1,10 @@
-const sql = require('./db');
+export default class PaymentController {
+    constructor(mgr){
+        this.repoManager=mgr;
+        }
+//const sql = require('./db');
 
-exports.getAll=function(){
+getAll=function(){
   return new Promise(resolve=>{
        let command="SELECT * FROM customers";
        sql.query(command,(err, rows, fields)=>{
@@ -11,7 +15,7 @@ exports.getAll=function(){
 };
 
 
-exports.getById=function(id){
+getById=function(id){
    return new Promise(resolve=>{
         let command="SELECT * FROM customers  WHERE id="+id;
         sql.query(command,(err, rows, fields)=>{
@@ -22,7 +26,7 @@ exports.getById=function(id){
 
 
 
-exports.insert=function(req){
+insert=function(req){
    return new Promise(resolve=>{
        let name=req.body.name;
        let location=req.body.location;
@@ -32,6 +36,7 @@ exports.insert=function(req){
            resolve(rows);
        })
 })
+}
 }
 
 exports.remove=function(id){

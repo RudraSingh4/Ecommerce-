@@ -1,7 +1,10 @@
+export default class PaymentController {
+  constructor(mgr){
+      this.repoManager=mgr;
+      }
+//var Task = require('../model/suppliers');
 
-var Task = require('../model/suppliers');
-
-exports.getAll = function(req, res) {
+getAll = function(req, res) {
   Task.getAllTask(function(err, task) {
     if (err)
       res.send(err);
@@ -9,7 +12,7 @@ exports.getAll = function(req, res) {
   });
 };
 
-exports.insert = function(req, res) {
+insert = function(req, res) {
   
   var new_task = new Task(req.body);
 
@@ -26,7 +29,7 @@ exports.insert = function(req, res) {
   }
 };
 
-exports.getBy = function(req, res) {
+getBy = function(req, res) {
   Task.getTaskById(req.params.taskId, function(err, task) {
     if (err)
       res.send(err);
@@ -34,7 +37,7 @@ exports.getBy = function(req, res) {
   });
 };
 
-exports.update = function(req, res) {
+update = function(req, res) {
   Task.updateById(req.params.taskId, new Task(req.body), function(err, task) {
     if (err)
       res.send(err);
@@ -42,7 +45,7 @@ exports.update = function(req, res) {
   });
 };
 
-exports.remove = function(req, res) {
+remove = function(req, res) {
   Task.remove( req.params.taskId, function(err, task) {
     if (err)
       res.send(err);
@@ -50,3 +53,4 @@ exports.remove = function(req, res) {
     res.json({ message: 'supplier successfully deleted' });
   });
 };
+}

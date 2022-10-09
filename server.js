@@ -1,12 +1,17 @@
-const express=require('express');
-const { clearScreenDown } = require('readline');
-const routes=require('./router');
+import express from 'express'
+import expressSession from 'express-session';
+import userRoutes from './router/users.js';
+//import categoriesRoutes from './router/admin.js'
+//import vendorRoutes from './router/vendors.js'
+import sellerRoutes from './router/seller.js';
+const app=express();
+import cors from 'cors';
+app.use(cors());
+
+//const express=require('express');
+//const { clearScreenDown } = require('readline');
+//const routes=require('./router');
 //var path=require('path');
-
-var app=express();
-routes(app)
-
-
 app.use(express.urlencoded({extended:true}));
 
 app.use(express.json());
