@@ -13,8 +13,17 @@ app.use(cors());
 //const routes=require('./router');
 //var path=require('path');
 app.use(express.urlencoded({extended:true}));
-
 app.use(express.json());
+categoriesRoutes(app);
+userRoutes(app)
+vendorRoutes(app)
+sellerRoutes(app)
+app.get('/user/register',(req,res)=>{
+    res.render("../views/register")
+})
+app.get('/user/login',(req,res)=>{
+    res.render("../views/userLogin")
+})
 app.listen(3000,()=>{
     console.log("App server is listening on port 3000");
 })
