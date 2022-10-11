@@ -1,4 +1,4 @@
-export default class PaymentController {
+export default class categoriesController {
   constructor(mgr){
       this.repoManager=mgr;
       }
